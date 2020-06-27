@@ -8,17 +8,23 @@ $(document).ready(function() {
     createButtonNav();
 
 });
-
 function createButtonNav(){
     
     var node = document.getElementById('button-nav');
 
     for(var i = 0; i < BUTTON_AND_TITLE_STRINGS.length; i++){
+        var a = document.createElement('a');
+        a.href = '#';
+        a.style.width = '100%';
+
         var button = document.createElement('button');
         button.type = 'button';
         button.className = 'btn btn-light';
+        button.style.width = '100%';
         button.innerHTML = BUTTON_AND_TITLE_STRINGS[i];
-        node.appendChild(button); 
+
+        a.appendChild(button);
+        node.appendChild(a); 
         buildParagrafTitle(i);
         
     }
