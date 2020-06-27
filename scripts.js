@@ -14,7 +14,7 @@ function createButtonNav(){
 
     for(var i = 0; i < BUTTON_AND_TITLE_STRINGS.length; i++){
         var a = document.createElement('a');
-        a.href = '#';
+        a.href = '#' + createIdFromString(BUTTON_AND_TITLE_STRINGS[i]);
         a.style.width = '100%';
 
         var button = document.createElement('button');
@@ -33,13 +33,10 @@ function createButtonNav(){
 function buildParagrafTitle(i){
     var node = document.getElementById('sector-' + i);
     if(node){
-        var pTitle = document.createElement('p');
         var innerP = node.innerHTML;
         node.innerHTML = '';
-        pTitle.className = 'display-4';
-        pTitle.innerHTML = BUTTON_AND_TITLE_STRINGS[i];
 
-        node.appendChild(pTitle);
+        node.appendChild(createPTitleWithIndex(i));
         node.innerHTML += innerP;
     }else{
         node = document.getElementById('p-container');
@@ -57,6 +54,12 @@ function buildParagrafTitle(i){
 function createPTitleWithIndex(i){
     var pTitle = document.createElement('p');
     pTitle.className = 'display-4';
+    pTitle.id = createIdFromString(BUTTON_AND_TITLE_STRINGS[i]);
     pTitle.innerHTML = BUTTON_AND_TITLE_STRINGS[i];
     return pTitle;
+}
+
+function createIdFromString(str){
+    str = str.replace(/\s+/g, '-');
+    return str.toLowerCase();
 }
